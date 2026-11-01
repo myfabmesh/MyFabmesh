@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — MyFabmesh.AI</title>
+<meta name="description" content="MyFabmesh.AI privacy policy — what data we collect, what we don't, your rights.">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="styles.css?v=3">
+<style>
+  .legal { max-width: 800px; margin: 60px auto 80px; padding: 0 24px; }
+  .legal h1 { font-size: 34px; margin-bottom: 8px; }
+  .legal .meta { color: var(--text-2); font-size: 13px; margin-bottom: 32px; }
+  .legal h2 { font-size: 20px; margin: 32px 0 10px; color: var(--text-0); }
+  .legal h3 { font-size: 16px; margin: 22px 0 8px; color: var(--text-1); }
+  .legal p, .legal li { font-size: 15px; color: var(--text-1); line-height: 1.7; }
+  .legal ul { margin: 0 0 18px 24px; }
+  .legal code { background: var(--bg-2); padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+  .legal .pill { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; }
+  .pill-good { background: rgba(74,222,128,0.15); color: var(--success); }
+  .pill-info { background: rgba(168,85,247,0.15); color: var(--accent); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="index.html" class="brand" style="display:inline-flex;align-items:center"><img src="logo-symbole.png" alt="" width="96" height="96" style="width:40px;height:40px;border-radius:22%;flex:none;margin-right:10px">MyFabmesh<span class="brand-ai">.AI</span></a>
+  <nav class="nav">
+    <a href="index.html#products">Products</a>
+    <a href="index.html#faq">FAQ</a>
+    <a href="index.html" class="nav-cta">← Back to site</a>
+  </nav>
+</header>
+
+<main class="legal">
+
+  <h1>Privacy Policy</h1>
+  <div class="meta">Last updated: 2026-10-31 · MyFabmesh.AI Desktop &amp; Cloud · Published by Ayros Studio (Fabien Lacaze, France)</div>
+
+  <h2>TL;DR <span class="pill pill-good">user-friendly</span></h2>
+  <ul>
+    <li><strong>A MyFabmesh account is required the first time you use the installed Desktop app on a PC</strong> (2 PCs maximum per account, see 2.7). After that, generation in Local mode runs 100% on your machine and works offline (the app re-checks your activation online at least every 7 days).</li>
+    <li>Generated meshes and images are <strong>stored locally only</strong>, never uploaded.</li>
+    <li><strong>Anonymous usage statistics</strong> (on by default, one click to turn off) and <strong>optional prompt sharing</strong> (off by default): section 2.6.</li>
+    <li>We collect <strong>anonymous crash reports</strong> via Sentry to fix bugs (no IP, no username, no machine name).</li>
+    <li>The first launch downloads ~15 GB of AI models from Hugging Face — that's a direct connection between your machine and Hugging Face, we don't proxy it.</li>
+    <li>The <strong>Cloud version</strong> (when available) requires a Microsoft / email login and stores your project history server-side — explained in detail below.</li>
+  </ul>
+
+  <h2>1. Who we are</h2>
+  <p>
+    MyFabmesh.AI is published by <strong>Ayros Studio</strong>, a French sole proprietorship operated by Fabien Lacaze.
+    Contact: <a href="mailto:myfabmesh.contact@gmail.com">myfabmesh.contact@gmail.com</a>.
+  </p>
+
+  <h2>2. Desktop application</h2>
+
+  <p>
+    The desktop app runs in one of <strong>two modes</strong>, and what leaves your
+    computer depends entirely on which one is active. The app tells you which mode
+    it is in, on the setup screen and next to the Generate button.
+  </p>
+
+  <h3>2.1 Local mode <span class="pill pill-info">needs an NVIDIA GPU</span></h3>
+  <p>Everything happens on your machine. In this mode:</p>
+  <ul>
+    <li>An account is needed once, to activate the PC (section 2.7); after that Local mode works offline and sends your content nowhere (only a small activation check, at least every 7 days).</li>
+    <li>No reference image, prompt, mask or generated mesh leaves your computer — generation runs on your own GPU. Only exception: the text of your prompts, if you turn on prompt sharing yourself (see 2.6).</li>
+    <li>No analytics SDK and no advertising identifier. The only usage measurement is the anonymous usage statistics described in 2.6 (on by default, you can turn them off in one click).</li>
+    <li>No collection of your MAC address, serial number or hardware IDs. The only persistent identifiers are the crash-report installation ID (2.3) and the random PC identifier used for activation (2.7).</li>
+  </ul>
+
+  <h3>2.2 Cloud mode <span class="pill pill-info">used automatically when no NVIDIA GPU is present</span></h3>
+  <p>
+    On a computer without a supported NVIDIA GPU, local generation is impossible, so the
+    app uses our cloud service instead. <strong>This requires an account, and your content
+    is sent to our servers.</strong> Concretely, in cloud mode:
+  </p>
+  <ul>
+    <li>You create an account (e-mail address and password) or sign in, from inside the app. Credentials are handled by Supabase Auth, hosted in the EU (Frankfurt).</li>
+    <li>Your prompts and reference images are uploaded to our worker and processed on rented GPUs; results are stored in Cloudflare R2 and downloaded back to your PC.</li>
+    <li>Your credit balance, payment history and generation history are stored against your account.</li>
+    <li>We never use your content to train models.</li>
+    <li>Section 3 below describes the cloud service in full — it applies to cloud mode of the desktop app too.</li>
+  </ul>
+  <p>
+    If you would rather not use the cloud, do not sign in: the app remains usable for
+    importing, editing and exporting meshes you already have.
+  </p>
+
+  <h3>2.3 What we collect in both modes</h3>
+
+  <ul>
+    <li>
+      <strong>Anonymous crash reports via Sentry.</strong>
+      When the app crashes or hits an unexpected error, a report is sent to our Sentry account containing:
+      the error stack trace, the app version, the OS version (e.g. "Windows 11 26200"), and a randomly generated
+      installation ID (UUID). <strong>We explicitly strip your Windows username and machine name</strong> before sending
+      (see <code>main.js / beforeSend</code> in the open source code). Sentry stores reports for 90 days.
+      <strong>You can switch this off</strong> in <em>Settings → Privacy → Crash reports</em>. Unticking it
+      stops reports immediately; ticking it back on takes effect at the next launch, because when the option is
+      off the reporting SDK is not started at all.
+    </li>
+    <li>
+      <strong>Update check.</strong>
+      The app checks GitHub Releases on launch to see if a newer version is available. The request is a standard
+      HTTPS GET to <code>api.github.com</code>. GitHub may log the request IP per their privacy policy — we don't see it.
+    </li>
+  </ul>
+
+  <h3>2.4 Third-party services the app talks to</h3>
+  <ul>
+    <li><strong>Hugging Face Hub</strong> (huggingface.co): downloads ~15 GB of AI models on first run. Subject to <a href="https://huggingface.co/privacy">Hugging Face's own privacy policy</a>. We bundle a read-only public token so no personal account is needed on your side.</li>
+    <li><strong>Sentry</strong> (sentry.io): receives the anonymous crash reports described above. Subject to <a href="https://sentry.io/privacy/">Sentry's privacy policy</a>.</li>
+    <li><strong>GitHub Releases</strong> (api.github.com): version check + installer download. Subject to <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy policy</a>.</li>
+  </ul>
+
+  <h3>2.5 What's stored on your computer</h3>
+  <ul>
+    <li>App files in <code>%LOCALAPPDATA%\Programs\MyFabmesh.AI\</code> (about 200 MB).</li>
+    <li>AI models cache in <code>%USERPROFILE%\.cache\huggingface\hub\</code> (about 15-22 GB depending on install mode).</li>
+    <li>Your projects, meshes, and image versions in <code>%USERPROFILE%\Documents\MyFabmesh.AI\</code> (controlled by you).</li>
+    <li>App settings in <code>%APPDATA%\fabmesh\</code> (preferences, logs, setup state).</li>
+  </ul>
+
+  <h3>2.6 Anonymous usage statistics and optional prompt sharing</h3>
+  <p>
+    Two settings (Settings &gt; Help improve MyFabmesh). <strong>Anonymous usage statistics are on by default</strong>: a
+    one-time notice tells you so when you first open the app, <strong>before anything is sent</strong>, and lets you turn them
+    off in one click. Legal basis: our legitimate interest in measuring how our own software is used (GDPR art. 6.1.f); this
+    strictly anonymous audience measurement falls under the trackers exempted from consent by the French data protection
+    authority (CNIL), provided you are informed and can object. <strong>Prompt sharing is off by default</strong> and is only
+    sent if you answer "yes" to the question asked the first time you open the app, or turn it on in Settings (legal basis: your consent, GDPR art. 6.1.a); it is only possible when usage statistics are
+    on. Turning a setting off stops sending at once and deletes the local counters, the local queue and the installation number.
+  </p>
+  <ul>
+    <li><strong>Usage statistics:</strong> once a day, the app version, your operating system, the interface language, Local or
+      Cloud mode, how many times each tool was used, and whether prompt sharing is on. We also record the country of the request
+      (as given by Cloudflare). A <strong>random installation number</strong> is sent so that one computer is counted once; it is
+      created while statistics are on, renewed at least every 13 months and deleted when you turn them off. Our servers never store it as is: only a
+      cryptographic fingerprint mixed with a value that changes every day, which counts today's active installations but cannot link
+      one day to the next. Kept <strong>390 days</strong> (less than 13 months), then deleted automatically.</li>
+    <li><strong>Prompt sharing</strong> (Local mode only): the text of your prompts (up to 500 characters), the tool, the object
+      type, success or failure and duration. Emails, links, keys, file paths and phone numbers are removed before sending and again
+      on receipt; a prompt rejected by our content filter is not kept. No image, no mesh, no account, no installation number.
+      Kept <strong>90 days</strong>, then deleted automatically. Received prompts are linked to no one, so they cannot be found
+      individually; they are never used for advertising and never sold.</li>
+    <li><strong>IP address:</strong> not stored with the statistics or the prompts. To limit abuse, a fingerprint of the IP address,
+      computed with a value that changes every day, is kept for at most 2 days in rate-limit counters, then deleted.</li>
+  </ul>
+
+  <h3>2.7 Account and PC identifier <span class="pill pill-info">installed app</span></h3>
+  <p>
+    The installed desktop app asks you to <strong>sign in or create a MyFabmesh account the first time you use it on a PC</strong>,
+    even if you then generate in Local mode (Local generation stays free and works offline afterwards). Development builds require nothing.
+  </p>
+  <ul>
+    <li><strong>What we store when a PC is activated:</strong> a random identifier created when the app is first installed (not derived from your hardware),
+      the <strong>name of the PC as you chose it in Windows</strong>, the app version and the activation date, linked to your account.
+      We never collect the serial number, the MAC address or any other hardware identifier.</li>
+    <li><strong>Limit:</strong> a maximum of <strong>2 PCs</strong> per account. You can free a PC at any time from your account page on the website or from the app
+      (Settings, &ldquo;My PCs&rdquo;), which deletes its entry.</li>
+    <li><strong>Offline use and periodic check:</strong> once a PC is activated, the app works offline for up to <strong>7 days</strong>.
+      As soon as the PC is online, the app silently contacts our server (at launch, then every few hours) to renew this period; the request
+      contains only the random PC identifier, the app version and the account session, and lets us stop a suspended or deleted account or a PC you have freed.
+      After 7 days without any connection, the app asks you to connect once. The activation key received is stored on your PC using the protection provided by Windows (DPAPI), tied to your Windows profile. This makes simply copying the app folder to another PC harder; it is a deterrent, not an absolute guarantee.</li>
+    <li><strong>Purpose and legal basis:</strong> enforcing the 2-PC limit of your account and protecting the application against copying
+      (legitimate interest, GDPR Art. 6(1)(f)). <strong>Retention:</strong> until you free the PC or delete your account.</li>
+  </ul>
+
+  <h2>3. Cloud service <span class="pill pill-info">live</span></h2>
+  <p>
+    The cloud service is in operation. It is reached either from the web app or from
+    cloud mode of the desktop application (section 2.2). It requires an e-mail based
+    account. When you use it:
+  </p>
+  <ul>
+    <li>We store your email, hashed password (handled by Supabase Auth), credit balance, payment history, and generation job history in a Supabase Postgres database hosted in the EU (Frankfurt).</li>
+    <li>Reference images you upload are sent to Replicate (GPU provider) for processing and to Cloudflare R2 for the resulting GLB storage. We never use them for training.</li>
+    <li>Payments are processed by Stripe; we never see your full card number.</li>
+    <li>You can request deletion of your Cloud account at any time by emailing the address below — we delete everything within 30 days.</li>
+    <li>
+      <strong>Country and app type.</strong> For each generation we keep the <strong>country</strong> the request
+      came from (as reported to us by our host, Cloudflare) and whether it came from the desktop app or a browser.
+      This is used only to see which markets use the service and to spot an outage affecting one country or one
+      platform. We keep <strong>no city, no region and no IP address</strong> alongside these statistics, and they
+      are never used for advertising. Legal basis: legitimate interest (GDPR art. 6(1)(f)) in understanding and
+      maintaining our own service.
+    </li>
+    <li>
+      <strong>Diagnostic logs — off unless you turn them on.</strong> The web app keeps a rolling copy of your
+      browser console in memory, which never leaves the tab. If support asks you to reproduce a problem, you can
+      tick <em>Settings → Diagnostic logs</em>; from then on that log — which includes your prompts, your project
+      names, the page address and your browser's user-agent — is uploaded after each generation. Passwords,
+      access tokens and e-mail addresses are removed before it is sent. Logs are deleted after 30 days.
+      Unticking the box stops it at once, and the same panel offers <em>“Save a copy instead”</em>, which writes
+      the log to a file on your computer and uploads nothing.
+    </li>
+  </ul>
+
+  <h2>4. Your rights (GDPR / RGPD)</h2>
+  <p>You can, at any time, by emailing <a href="mailto:myfabmesh.contact@gmail.com">myfabmesh.contact@gmail.com</a>:</p>
+  <ul>
+    <li>Ask what personal data we hold about you (typically: your account, the list of your activated computers and, for Cloud, your history).</li>
+    <li>Request correction or deletion of that data.</li>
+    <li>Request that we stop sending crash reports from your installation.</li>
+    <li>File a complaint with the CNIL (French data protection authority) if you believe we've mishandled your data.</li>
+  </ul>
+
+  <h2>5. Children</h2>
+  <p>
+    MyFabmesh.AI is not directed at children under 13. We don't knowingly collect data from children. If you believe a
+    child has provided us with personal information, contact us and we'll delete it.
+  </p>
+
+  <h2>6. Changes to this policy</h2>
+  <p>
+    We'll update this page when the app's data practices change (new feature, new service, etc.). The "Last updated"
+    date at the top reflects the current revision. Significant changes will be announced on the app's update notes.
+  </p>
+
+  <h2>7. Contact</h2>
+  <p>
+    For any question: <a href="mailto:myfabmesh.contact@gmail.com">myfabmesh.contact@gmail.com</a><br>
+    Ayros Studio · [À_COMPLÉTER: nom du directeur de la publication] · [À_COMPLÉTER: adresse postale complète du siège — valeur unique, identique aux Mentions légales]
+  </p>
+
+</main>
+
+<footer class="site-footer">
+  <div style="text-align:center; padding: 32px 24px; color: var(--text-3); font-size: 13px;">
+    © 2026 MyFabmesh.AI · An Ayros Studio production · <a href="index.html">myfabmesh.ai</a>
+  </div>
+</footer>
+
+</body>
+</html>
