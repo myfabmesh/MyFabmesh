@@ -35,7 +35,7 @@
 <main class="legal">
 
   <h1>Privacy Policy</h1>
-  <div class="meta">Last updated: 2026-10-31 · MyFabmesh.AI Desktop &amp; Cloud · Published by Ayros Studio (Fabien Lacaze, France)</div>
+  <div class="meta">Last updated: 2026-11-20 · MyFabmesh.AI Desktop &amp; Cloud · Published by Ayros Studio (Fabien Lacaze, France)</div>
 
   <h2>TL;DR <span class="pill pill-good">user-friendly</span></h2>
   <ul>
@@ -65,7 +65,7 @@
   <p>Everything happens on your machine. In this mode:</p>
   <ul>
     <li>An account is needed once, to activate the PC (section 2.7); after that Local mode works offline and sends your content nowhere (only a small activation check, at least every 7 days).</li>
-    <li>No reference image, prompt, mask or generated mesh leaves your computer — generation runs on your own GPU. Only exception: the text of your prompts, if you turn on prompt sharing yourself (see 2.6).</li>
+    <li>No reference image, prompt, mask or generated mesh leaves your computer — generation runs on your own GPU. Exceptions: the text of your prompts, if you turn on prompt sharing yourself (see 2.6); and two optional AI helpers that run on our servers and need your signed-in account — « Auto size » (sends the object name and notes you typed) and the animation realism review (sends small pictures of the animated skeleton, charged in credits). They run only when you use them; you can untick the review before generating an animation.</li>
     <li>No analytics SDK and no advertising identifier. The only usage measurement is the anonymous usage statistics described in 2.6 (on by default, you can turn them off in one click).</li>
     <li>No collection of your MAC address, serial number or hardware IDs. The only persistent identifiers are the crash-report installation ID (2.3) and the random PC identifier used for activation (2.7).</li>
   </ul>
@@ -96,15 +96,16 @@
       When the app crashes or hits an unexpected error, a report is sent to our Sentry account containing:
       the error stack trace, the app version, the OS version (e.g. "Windows 11 26200"), and a randomly generated
       installation ID (UUID). <strong>We explicitly strip your Windows username and machine name</strong> before sending
-      (see <code>main.js / beforeSend</code> in the open source code). Sentry stores reports for 90 days.
+      from the report. <strong>Limit:</strong> if the app crashes at the operating-system level, the crash dump
+      (a snapshot of the application's memory) can contain fragments of what the app was handling at that moment.
+      Sentry stores reports for 90 days.
       <strong>You can switch this off</strong> in <em>Settings → Privacy → Crash reports</em>. Unticking it
       stops reports immediately; ticking it back on takes effect at the next launch, because when the option is
       off the reporting SDK is not started at all.
     </li>
     <li>
-      <strong>Update check.</strong>
-      The app checks GitHub Releases on launch to see if a newer version is available. The request is a standard
-      HTTPS GET to <code>api.github.com</code>. GitHub may log the request IP per their privacy policy — we don't see it.
+      <strong>Updates.</strong>
+      The Microsoft Store version is updated by the Microsoft Store itself; the app does not check for updates on its own.
     </li>
   </ul>
 
@@ -112,7 +113,6 @@
   <ul>
     <li><strong>Hugging Face Hub</strong> (huggingface.co): downloads ~15 GB of AI models on first run. Subject to <a href="https://huggingface.co/privacy">Hugging Face's own privacy policy</a>. We bundle a read-only public token so no personal account is needed on your side.</li>
     <li><strong>Sentry</strong> (sentry.io): receives the anonymous crash reports described above. Subject to <a href="https://sentry.io/privacy/">Sentry's privacy policy</a>.</li>
-    <li><strong>GitHub Releases</strong> (api.github.com): version check + installer download. Subject to <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy policy</a>.</li>
   </ul>
 
   <h3>2.5 What's stored on your computer</h3>
@@ -176,9 +176,9 @@
   </p>
   <ul>
     <li>We store your email, hashed password (handled by Supabase Auth), credit balance, payment history, and generation job history in a Supabase Postgres database hosted in the EU (Frankfurt).</li>
-    <li>Reference images you upload are sent to Replicate (GPU provider) for processing and to Cloudflare R2 for the resulting GLB storage. We never use them for training.</li>
+    <li>Reference images, prompts and 3D meshes you send for processing are received by Modal Labs (GPU provider, United States) for the computation; the results are kept there for 30 days at most, and stored with the resulting files on Cloudflare R2. We never use them for training. No other third party receives your images or your prompts.</li>
     <li>Payments are processed by Stripe; we never see your full card number.</li>
-    <li>You can request deletion of your Cloud account at any time by emailing the address below — we delete everything within 30 days.</li>
+    <li>You can delete your Cloud account yourself at any time (Settings → Privacy &amp; data → « Delete my account »): your account, projects, meshes and images are deleted within seconds. Accounting records of payments are kept 6 years under a legal obligation, unlinked from you. The compute provider's technical copies and our nightly backups expire within 30 and 14 days.</li>
     <li>
       <strong>Country and app type.</strong> For each generation we keep the <strong>country</strong> the request
       came from (as reported to us by our host, Cloudflare) and whether it came from the desktop app or a browser.
