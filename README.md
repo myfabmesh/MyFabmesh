@@ -22,6 +22,6 @@ MyFabmesh.AI is proprietary software: **its source code is not published here.**
 
 - [Privacy policy](https://myfabmesh.github.io/MyFabmesh/privacy.html)
 - [Terms of use](https://myfabmesh.github.io/MyFabmesh/terms.html)
-- Contact: [myfabmesh.contact@gmail.com](mailto:myfabmesh.contact@gmail.com)
+- Contact: [myfabmesh@gmail.com](mailto:myfabmesh@gmail.com)
 
 © 2026 Ayros Studio. All rights reserved. The website content (text, images, 3D models) may not be reused without permission.
